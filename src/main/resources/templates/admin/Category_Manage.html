@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/codemirror.css}" >
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link rel="stylesheet" th:href="@{/layui_ext/dtree/dtree.css}">
+    <link rel="stylesheet" th:href="@{/layui_ext/dtree/font/dtreefont.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/assets/js/ace-elements.min.js}"></script>
+    <script th:src="@{/assets/js/ace.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/typeahead-bs2.min.js}"></script>
+    <script th:src="@{/js/lrtk.js}" type="text/javascript"></script>
+    <title>分类管理</title>
+</head>
+
+<body>
+<div class=" clearfix">
+    <div id="category">
+        <div id="scrollsidebar" class="left_Treeview">
+            <div class="show_btn" id="rightArrow"><span></span></div>
+            <div class="widget-box side_content" >
+                <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
+                <div class="side_list">
+                    <div class="widget-header header-color-green2">
+                        <h4 class="lighter smaller">商品类型列表</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div style="height: 550px;" id="toolbarDiv">
+                            <ul id="demoTree" class="dtree" data-id="0"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <iframe id="testIframe" name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO SRC="/firstType/toAdd" class="page_right_style"></iframe>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#category").fix({
+            float: 'left',
+            skin: 'green',
+            durationTime: false
+        });
+    });
+
+    //初始化宽度、高度
+    $(".widget-box").height($(window).height());
+    $(".page_right_style").width($(window).width() - 220);
+    //当文档窗口发生改变时 触发
+    $(window).resize(function () {
+        $(".widget-box").height($(window).height());
+        $(".page_right_style").width($(window).width() - 220);
+    });
+
+    layui.extend({
+        dtree: '/layui_ext/dist/dtree'
+    }).use(['dtree','layer','jquery'], function(){
+        var dtree = layui.dtree;
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        // 初始化树
+        var DemoTree = dtree.render({
+            elem: "#demoTree",
+            url: "/select", // 使用url加载（可与data加载同时存在）
+            width: "240",
+            initLevel: 1, //展开级数
+            line: true,
+            toolbar:true,
+            formatter: {
+                title: function (data) {  // 示例给有子集的节点返回节点统计
+                    var s = data.title;
+                    if (data.children) {
+                        s += ' <span style=\'color:blue\'>(' + data.children.length + ')</span>';
+                    }
+                    return s;
+                }
+            },
+            toolbarFun:{
+                loadToolbarBefore: function(buttons, param, $div) {
+                    if (param.leaf) { // 如果是叶子节点
+                        buttons.addToolbar = "";  // 取消新增功能
+                    }
+                    return buttons; // 将按钮对象返回
+                },
+                /*添加节点*/
+                addTreeNode: function(treeNode, $div){
+                    $.ajax({
+                        type: "post",
+                        data: {"sname":treeNode.addNodeName,"fid":treeNode.parentId},
+                        url: "/secondType/add",
+                        success: function(msg){
+                            DemoTree.refreshTree();
+                            layui.use("layer", function () {
+                                this.layer=layui.layer;
+                                layer.msg(msg);
+                            });
+                        },
+                    });
+                },
+                /*修改节点*/
+                editTreeNode: function(treeNode,$div){
+                    if (treeNode.leaf){  //如果是二级分类
+                        var param = dtree.getNowParam(DemoTree);
+                        $.ajax({
+                            type: "post",
+                            data: {"sname":treeNode.editNodeName,"sid":param.nodeId},
+                            url: "/secondType/edit",
+                            success: function(result){
+                                DemoTree.refreshTree();
+                                layui.use("layer", function () {
+                                    this.layer=layui.layer;
+                                    layer.msg(result);
+                                });
+                            },
+                        });
+                    }else{    //一级分类
+                        var param = dtree.getNowParam(DemoTree); //获取当前选中节点
+                        $.ajax({
+                            type: "post",
+                            data: {"fname":treeNode.editNodeName,"fid":param.nodeId},
+                            url: "/firstType/edit",
+                            success: function(result){
+                                DemoTree.refreshTree();
+                                layui.use("layer", function () {
+                                    this.layer=layui.layer;
+                                    layer.msg(result);
+                                });
+                            },
+                        });
+                    }
+                },
+                /*删除节点*/
+                delTreeNode: function(treeNode, $div){
+                    var param = dtree.getNowParam(DemoTree);
+                    if (treeNode.leaf){  //如果是二级分类
+                        $.ajax({
+                            type: "post",
+                            data: {"sid":param.nodeId},
+                            url: "/secondType/delete",
+                            success: function(result){
+                                DemoTree.refreshTree();
+                                layui.use("layer", function () {
+                                    this.layer=layui.layer;
+                                    layer.msg(result);
+                                });
+                            },
+                        });
+                    }else {  //一级分类
+                        $.ajax({
+                            type: "post",
+                            data: {"fid":param.nodeId},
+                            url: "/firstType/delete",
+                            success: function(result){
+                                DemoTree.refreshTree();
+                                layui.use("layer", function () {
+                                    this.layer=layui.layer;
+                                    layer.msg(result);
+                                });
+                            },
+                        });
+                    }
+                }
+
+            }
+        });
+        // 绑定节点点击
+        dtree.on("node('demoTree')" ,function(obj){
+            layer.msg(JSON.stringify(obj.param.context));
+        });
+    });
+
+</script>
+</body>
+</html>

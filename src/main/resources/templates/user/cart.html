@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/base.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/head.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link type="text/css" th:href="@{/css/front/css.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/wb.js}" type="text/javascript"></script>
+    <script th:src="@{/layui/layui.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <script th:src="@{/script/global.js}" type="text/javascript"></script>
+    <script th:src="@{/script/head.js}" type="text/javascript"></script>
+    <title>我的购物车</title>
+</head>
+
+<body>
+
+<!--抬头开始-->
+<div th:replace="~{user/common/common::top}"></div>
+<!--抬头结束-->
+<div class="pnt">
+    <div th:replace="~{user/common/common::headNav2}"></div>
+</div><!--pnt/-->
+<div class="positions">
+    当前位置：<a href="index.html">首页</a> &gt; <a href="#" class="posCur">购物车</a>
+</div><!--positions/-->
+<div class="carImg"><img th:src="@{/images/car1.jpg}" width="1063" height="30" /></div>
+<!--中部开始-->
+
+<div class="ding_tjb" style="margin: 0 auto">
+    <div class="ding_1" style="width: 1065px">
+        <table width="0" border="0" cellspacing="0" cellpadding="0">
+            <tr style=" font-family:微软雅黑; text-align:center; font-size:14px;">
+                <th width="100"><input  type="checkbox" value="checked" checked class="select"  style=" margin-left:10px;margin-right:10px;"></th>
+                <th width="350">商品信息</th>
+                <th width="170">单价（元）</th>
+                <th width="170">数量</th>
+                <th width="170">金额</th>
+                <th width="120">操作</th>
+            </tr>
+        </table>
+    </div>
+
+    <div th:each="cartVo: ${cartVoList}">
+        <div style="margin: 15px 0px -15px 8px;">
+            <svg t="1611323548456" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3459" width="16" height="16"><path d="M503.944119 98.332322a12.210259 12.210259 0 1 1-12.210259-12.210259 12.282509 12.282509 0 0 1 12.210259 12.210259zM820.977351 98.332322a12.282509 12.282509 0 1 1-12.282509-12.210259 12.282509 12.282509 0 0 1 12.282509 12.210259z" fill="#5FB0E5" p-id="3460"></path><path d="M34.246525 162.562619m-12.210259 0a12.210259 12.210259 0 1 0 24.420518 0 12.210259 12.210259 0 1 0-24.420518 0Z" fill="#5FB0E5" p-id="3461"></path><path d="M301.571721 78.102307m-18.351514 0a18.351513 18.351513 0 1 0 36.703027 0 18.351513 18.351513 0 1 0-36.703027 0Z" fill="#5FB0E5" p-id="3462"></path><path d="M687.676004 53.320539A24.565018 24.565018 0 1 1 663.110986 28.900021a24.565018 24.565018 0 0 1 24.565018 24.420518z" fill="#5FB0E5" p-id="3463"></path><path d="M109.16983 53.320539m-24.709518 0a24.709518 24.709518 0 1 0 49.419036 0 24.709518 24.709518 0 1 0-49.419036 0Z" fill="#5FB0E5" p-id="3464"></path><path d="M115.600085 162.562619h784.491074a30.778523 30.778523 0 0 1 30.778523 30.778523v766.789811H84.460312V193.341142A30.778523 30.778523 0 0 1 115.600085 162.562619z" fill="#FFFFFF" p-id="3465"></path><path d="M948.065194 977.326466H67.264799V192.546391a47.179285 47.179285 0 0 1 47.179285-47.107034h66.975799v34.318775h-66.975799a12.860509 12.860509 0 0 0-12.86051 12.788259v750.38905h812.162845V192.546391a12.860509 12.860509 0 0 0-12.860509-12.788259H419.050307v-34.318775h482.196853a47.179285 47.179285 0 0 1 47.179285 47.107034z" fill="#0686D8" p-id="3466"></path><path d="M244.421929 145.439357h114.299584v34.318775H244.421929z" fill="#0686D8" p-id="3467"></path><path d="M46.456784 918.009172m22.108516 0l878.199393 0q22.108516 0 22.108517 22.108517l0 20.157764q0 22.108516-22.108517 22.108517l-878.199393 0q-22.108516 0-22.108516-22.108517l0-20.157764q0-22.108516 22.108516-22.108517Z" fill="#5FB0E5" p-id="3468"></path><path d="M946.836943 999.507232H68.5653a39.304029 39.304029 0 0 1-39.231779-39.231779v-20.157764a39.304029 39.304029 0 0 1 39.231779-39.304029h878.271643a39.304029 39.304029 0 0 1 39.231779 39.304029v20.157764a39.304029 39.304029 0 0 1-39.231779 39.231779z m-878.271643-64.302547a4.840754 4.840754 0 0 0-4.913003 4.913004v20.157764a4.913004 4.913004 0 0 0 4.913003 4.913004h878.271643a4.985254 4.985254 0 0 0 4.913004-4.913004v-20.157764a4.913004 4.913004 0 0 0-4.913004-4.913004z" fill="#0686D8" p-id="3469"></path><path d="M46.456784 249.190433m22.108516 0l878.199393 0q22.108516 0 22.108517 22.108516l0 20.157764q0 22.108516-22.108517 22.108517l-878.199393 0q-22.108516 0-22.108516-22.108517l0-20.157764q0-22.108516 22.108516-22.108516Z" fill="#5FB0E5" p-id="3470"></path><path d="M946.836943 330.688492H68.5653a39.231779 39.231779 0 0 1-39.231779-39.231779v-20.157764a39.231779 39.231779 0 0 1 39.231779-39.231779h878.271643a39.304029 39.304029 0 0 1 39.231779 39.231779v20.157764a39.304029 39.304029 0 0 1-39.231779 39.231779zM68.5653 266.385945a4.840754 4.840754 0 0 0-4.913003 4.913004v20.157764a4.840754 4.840754 0 0 0 4.913003 4.913004h878.271643a4.913004 4.913004 0 0 0 4.913004-4.913004v-20.157764a4.913004 4.913004 0 0 0-4.913004-4.913004z" fill="#0686D8" p-id="3471"></path><path d="M181.419883 582.913427h207.863402v399.470543H181.419883z" fill="#5FB0E5" p-id="3472"></path><path d="M181.419883 852.261624l207.863402-207.935652v-61.412545h-51.225287l-156.638115 156.638115v112.710082zM181.419883 937.733437l207.863402-207.935652v-39.231779l-207.863402 207.935652v39.231779z" fill="#9ECFEF" p-id="3473"></path><path d="M406.406548 999.507232H164.22437v-433.500317h242.182178z m-207.863403-34.318775h173.400127V600.036689h-173.400127z" fill="#0686D8" p-id="3474"></path><path d="M181.419883 387.766034h207.863402v128.243844H181.419883z" fill="#5FB0E5" p-id="3475"></path><path d="M406.406548 533.205391H164.22437V370.570521h242.182178z m-207.863403-34.318776h173.400127V404.600296h-173.400127z" fill="#0686D8" p-id="3476"></path><path d="M244.421929 828.346857a42.121781 42.121781 0 1 1 42.049531-42.121781 42.194031 42.194031 0 0 1-42.049531 42.121781z m0-49.924787a7.803006 7.803006 0 1 0 7.730756 7.803006 7.803006 7.803006 0 0 0-7.730756-7.803006z" fill="#0686D8" p-id="3477"></path><path d="M521.211882 510.735624h287.48296v329.821492H521.211882z" fill="#5FB0E5" p-id="3478"></path><path d="M521.211882 629.948211v160.973118l280.113455-280.185705H640.352219l-119.140337 119.212587zM635.150215 840.557116l173.544627-173.544627V582.552177l-258.004939 258.004939h84.460312z" fill="#9ECFEF" p-id="3479"></path><path d="M825.890355 857.752628H504.016369v-364.140266h321.873986zM538.335144 823.650603h253.236436V527.931137h-252.875185z" fill="#0686D8" p-id="3480"></path><path d="M462.400339 313.56523h401.638044v226.648416a42.699781 42.699781 0 0 1-42.699781 42.699781H504.95562A42.699781 42.699781 0 0 1 462.400339 540.213646V313.56523z" fill="#9ECFEF" p-id="3481"></path><path d="M521.211882 582.913427A58.956043 58.956043 0 0 1 462.400339 523.957384V313.56523h58.956043zM580.167925 313.56523h58.956043v269.348197H580.167925zM698.007761 313.56523h58.956043v269.348197h-58.956043zM863.966133 541.297396V313.56523h-55.271291v269.348197h13.65526a41.61603 41.61603 0 0 0 41.616031-41.616031z" fill="#D2E9F7" p-id="3482"></path><path d="M786.369576 600.036689H536.312143a91.251817 91.251817 0 0 1-91.179567-91.179566V296.225217H881.450646v209.091653a94.792069 94.792069 0 0 1-95.08107 94.719819zM479.451351 330.688492v178.168631a56.933042 56.933042 0 0 0 56.860792 56.860791h250.057433a60.473294 60.473294 0 0 0 60.401044-60.401044V330.688492z" fill="#0686D8" p-id="3483"></path></svg>
+            <span style="color: #666;line-height: 30px;font-weight: 700;">[[${cartVo.sellerName}]] 的店铺</span>
+        </div>
+        <div class="dingd_sl" style="width: 1065px;height: 85px;margin-top: 15px;border-top: 2px solid #aaa">
+            <table width="0" border="0" cellspacing="0" cellpadding="0" >
+                <tr id="data" style=" font-family:微软雅黑; text-align:center; font-size:14px;">
+                    <td class="cart_id" th:text="${cartVo.id}" hidden></td>
+                    <td class="goods_id" th:text="${cartVo.goodsId}" hidden></td>
+                    <td class="stock" th:text="${cartVo.stock}" hidden></td>
+                    <td width="100" height="87">
+                        <input name="checkbox" class="ids" checked type="checkbox" value="" style=" margin-left:10px;margin-right:10px;">
+                    </td>
+                    <td width="350">
+                    <span class="ddtp_3" style="width: 60px;height: 60px">
+                        <img th:src="@{${cartVo.photoUrl}}" width="59" height="58"/>
+                    </span>
+                        <span class="ddmc_xq" style="float: none;text-align: left">
+                        <a href="#" th:text="${cartVo.goodsTitle}"></a>
+                    </span>
+                    </td>
+                    <td width="170" style="color:#F00;" th:text="${cartVo.price}" class="price"></td>
+                    <td width="170" class="countTd">
+                        <input name="" value="-" type="button" onclick="reduce(this)" style="background: url(/images/front/jia.jpg); width:19px; height:19px;">
+                        <input type="text"  th:value="${cartVo.quantity}" class="count" style="width:40px; text-align:center; height:18px; border:1px solid#dddddd;" >
+                        <input name="" value="+" type="button" onclick="add(this)" style="background: url(/images/front/jia.jpg);width:19px; height:19px;">
+                    </td>
+                    <td width="170" style="color:#F00;" th:text="${cartVo.cost}" class="cost"></td>
+                    <td width="120"><a th:href="@{'/delete/'+${cartVo.id}}">删除</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="jxgw_zj">
+        <div class="jxgw_wq"><a th:href="@{/user/index.html}">继续购物</a></div>
+        <div class="zjs2">
+            <div class="none" style="height:15px;"></div>
+            <div class="zjs2_1">共<span class="quantity" style="color:#F00; font-size:14px;" th:text="${cartVoList.size()}"></span>件商品，商品总价：￥<span style="color:#F00; font-size:15px;" id="totalCost">[[${totalCost}]]</span></div>
+            <div class="qjs"><a href="javascript:;" onclick="settlement()">去结算</a></div>
+        </div>
+    </div>
+
+    <!--浏览记录开始-->
+    <div class="lljl_2">
+        <div class="lljl_bt1"><span class="lljl_mc">浏览记录</span></div>
+        <div class="lljl_tp1" th:each="goods:${goodsList}">
+            <div class="lljl_tp2"><a th:href="@{/user/toGoodsDetail(id=${goods.id})}"><img th:src="@{${goods.photoUrl}}" width="180" height="178"/></a></div>
+            <div class="lljl_tp2_mc"><a th:href="@{/user/toGoodsDetail(id=${goods.id})}" th:text="${goods.goodsTitle}"></a></div>
+            <div class="lljl_tp2_jg"><span class="jia_jg">￥[[${goods.price}]]</span></div>
+        </div>
+    </div>
+    <!--浏览记录结束-->
+</div>
+<!--中部结束-->
+
+<!--底部开始-->
+<div th:replace="~{user/common/common::inHelp}"></div>
+<!--底部结束-->
+<script>
+    function reduce(obj){
+        var count = parseInt($(obj).siblings(".count").val());  //商品数量
+        var price = parseFloat($(obj).parents("td").siblings(".price").text());  //商品单价
+        var totalCost = parseFloat(0);
+        if (count>=2){
+            $(obj).siblings(".count").val(--count);
+            $(obj).parents("td").siblings(".cost").text(price*10000*count/10000);
+            $("input[class='ids']:checked").each(function () {
+                var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+                totalCost = totalCost + cost;
+            });
+            $('#totalCost').text(totalCost);
+        }else {
+            $(obj).siblings(".count").val(1);
+            $(obj).parents("td").siblings(".cost").text(price*10000*count/10000);
+            $("input[class='ids']:checked").each(function () {
+                var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+                totalCost = totalCost + cost;
+            });
+            $('#totalCost').text(totalCost);
+        }
+    }
+
+    function add(obj){
+        var stock = parseInt($(obj).parents("td").siblings(".stock").text());  //商品数量
+        var totalCost = parseFloat(0);
+        var price = parseFloat($(obj).parents("td").siblings(".price").text());  //商品单价
+        var count = parseInt($(obj).siblings(".count").val());  //商品数量
+        if (count<stock){
+            $(obj).siblings(".count").val(++count);
+            $(obj).parents("td").siblings(".cost").text(price*10000*count/10000);
+            $("input[class='ids']:checked").each(function () {
+                var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+                totalCost = totalCost + cost;
+            });
+            $('#totalCost').text(totalCost);
+        }else {
+            $(obj).siblings(".count").val(stock);
+            layui.use("layer",function () {
+                this.layer = layui.layer;
+                layer.msg("不能超过商品库存数！",{area:'200px'});
+            })
+        }
+    }
+
+    $("table tr th input[type=checkbox]").click(function () {
+        var totalCost = parseFloat(0);
+        if ($(this).val()=="checked"){
+            $("input[name='checkbox']").removeAttr("checked");
+            $(this).val("unchecked");
+            $("input[class='ids']:checked").each(function () {
+                var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+                totalCost = totalCost + cost;
+            });
+            $('#totalCost').text(totalCost);
+            $('.quantity').text(0);
+        } else {
+            $("input[name='checkbox']").attr("checked","true");
+            $(this).val("checked");
+            $("input[class='ids']:checked").each(function () {
+                var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+                totalCost = totalCost + cost;
+            });
+            $('#totalCost').text(totalCost);
+            $('.quantity').text($("input[class='ids']:checked").length);
+        }
+    });
+
+    $("table tr td input[type=checkbox]").click(function () {
+        var totalCost = parseFloat(0);
+        $("input[class='ids']:checked").each(function () {
+            var cost = parseFloat($(this).parents("td").siblings(".cost").text());  //商品单价
+            totalCost = totalCost + cost;
+        });
+        $('#totalCost').text(totalCost);
+        $('.quantity').text($("input[class='ids']:checked").length);
+    });
+
+    /*购物车结算*/
+    function settlement() {
+        var orderArray = new Array();
+        /*获取选中的商品信息*/
+        $("input[class='ids']:checked").each(function () {
+            var cartId = parseInt($(this).parents("td").siblings(".cart_id").text());  //购物车id
+            var goodsId = parseInt($(this).parents("td").siblings(".goods_id").text());  //商品id
+            var price = parseFloat($(this).parents("td").siblings(".price").text());  //商品单价
+            var count = parseInt($(this).parents("td").siblings(".countTd").children(".count").val());  //购买数量
+            let order = {};
+            order.cartId = cartId;
+            order.goodsId = goodsId;
+            order.count = count;
+            order.price = price;
+            orderArray.push(order);
+        });
+        $.ajax({
+            url: '/cart/update',
+            data: {"orderArray":JSON.stringify(orderArray)},
+            success: function () {
+                window.location.href="/user/order.html?orderArray="+encodeURIComponent(JSON.stringify(orderArray));
+            }
+        });
+    }
+</script>
+</body>
+</html>

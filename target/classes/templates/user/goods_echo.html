@@ -1,0 +1,272 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}"/>
+    <link rel="stylesheet" th:href="@{/style/base.css}"/>
+    <link rel="stylesheet" th:href="@{/style/head.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link th:href="@{/assets/css/codemirror.css}" rel="stylesheet">
+    <link th:rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <script th:src="@{/script/global.js}" type="text/javascript"></script>
+    <script th:src="@{/script/head.js}" type="text/javascript"></script>
+    <title>本亲生活网</title>
+</head>
+
+<body>
+<div class="zhuce_left" style="padding-top: 0px;width: 510px">
+    <!--用于保存商品id-->
+    <span class="goods-id" th:text="${product.id}" hidden></span>
+    <form action="javascript:;" class="form form-horizontal" id="form-article-add" >
+        <!--商品分类-->
+        <div class="clearfix cl">
+            <label class="form-label col-2">商品分类：</label>
+            <div class="layui-input-inline">
+                <select name="level1" style="width: 168px;margin-left: 20px;" class="level1">
+                    <option value="" selected>请选择一级分类</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="level2" style="width: 168px;margin-left: 34px;" class="level2">
+                    <option value="" selected>请选择二级分类</option>
+                </select>
+            </div>
+        </div>
+        <!--商品标题-->
+        <div class="clearfix cl">
+            <label class="form-label col-2">商品标题：</label>
+            <div class="formControls col-10" style="width: 378px">
+                <input type="text" name="title" id="title" th:value="${product.goodsTitle}" placeholder="请输入标题" class="layui-input" required>
+            </div>
+        </div>
+        <!--商品其他属性-->
+        <div class="clearfix cl">
+            <!--商品单价-->
+            <div class="Add_p_s">
+                <label class="form-label col-2">商品单价：</label>
+                <div class="formControls col-2" style="margin-left: 29px">
+                    <input type="text" th:value="${product.price}" class="input-text" name="price" id="price" required/>元
+                </div>
+            </div>
+            <!--数量-->
+            <div class="Add_p_s" style="margin-left: 10px">
+                <label class="form-label col-2">数&nbsp;&nbsp;&nbsp;量：</label>
+                <button value="-" type="button" style="background: url(/images/front/jia.jpg); width:19px; height:19px;margin-left: 15px;margin-right: -10px;" onclick="reduce()">-</button>
+                <input name="count" type="text" id="count" th:value="${product.count}" style="width:48px; text-align:center; height:20px; border:1px solid #dddddd;">
+                <button value="+" type="button" style="background: url(/images/front/jia.jpg); width:19px; height:19px;" onclick="add()">+
+                </button>
+            </div>
+        </div>
+        <div class="clearfix cl">
+            <label class="form-label col-2">详情说明：</label>
+            <div class="formControls col-10" style="width: 400px">
+                <textarea name="remark" th:text="${product.description}" id="remark" rows="" class="textarea" style="height: 134px"></textarea>
+            </div>
+        </div>
+        <!--图片上传-->
+        <div class="clearfix cl">
+            <label class="form-label col-2">图片上传：</label>
+            <div class="layui-upload-drag" id="test10" style="margin-left: 9px;width: 400px">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <div id="uploadDemoView">
+                    <hr>
+                    <img th:src="@{${product.photoUrl}}" alt="上传成功后渲染" style="max-width: 78px" class="photo">
+                </div>
+            </div>
+        </div>
+        <div class="clearfix cl" style="margin-left: 166px;width: 393px">
+            <div class="formControls col-2">
+                <button class="btn btn-primary radius" type="button" id="submit"><i class="icon-save "></i>保存并提交审核
+                </button>
+                <button class="btn btn-default radius" type="reset">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<!--会员注册结束-->
+
+<script>
+    /*商品数量减操作*/
+    var count = $('#count').val();
+    function reduce() {
+        if (count >= 2) {
+            $('#count').val(--count);
+        } else {
+            $('#count').val(1);
+        }
+    }
+    /*商品数量加操作*/
+    function add() {
+        $('#count').val(++count);
+    }
+
+    $('#title').focus(function () {
+        layui.use("layer", function () {
+            this.layer = layui.layer;
+            layer.tips('应包含名称，品牌等基本信息。', '#title', {
+                tips: [1, '#0b50db'],
+                time: 4000
+            });
+        });
+    });
+
+    /*图片上传*/
+    layui.use('upload', function () {
+        var $ = layui.jquery,
+            upload = layui.upload;
+        //拖拽上传
+        upload.render({
+            elem: '#test10',
+            url: '/upload', //改成您自己的上传接口
+            field: 'mf',
+            done: function (res) {
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.data.src);
+            }
+        });
+    });
+    /*商品分类联动*/
+    $(function () {
+        /*获取一级分类*/
+        $.ajax({
+            url: '/getAllLevelOne',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (i, j) {
+                    var option = $("<option>");
+                    option.attr("value", j.id);
+                    option.text(j.name);
+                    $('.level1').append(option);
+                });
+            }
+        });
+        /*根据一级分类查询二级分类*/
+        $('.level1').change(function () {
+            $('option.sec').remove();
+            var level1Id = $(this).val();
+            $.ajax({
+                url: '/getAllLevelById',
+                type: 'post',
+                data: {"fid": level1Id},
+                success: function (data) {
+                    $.each(data, function (i, j) {
+                        var option = $("<option>");
+                        option.attr("value", j.id);
+                        option.attr("class", "sec");
+                        option.text(j.name);
+                        $('.level2').append(option);
+                    });
+                }
+            });
+        });
+    });
+    /*表单数据验证*/
+    $('#submit').click(function () {
+        var id = $('.goods-id').text();
+        var level1 = $('.level1').val(); // 一级分类
+        var level2 = $('.level2').val();  // 二级分类
+        var title = $('#title').val();  //商品标题
+        var price = $('#price').val();  //商品价格
+        var remark = $('#remark').val();  //详情
+        var count = $('#count').val();  //商品数量
+        var photoUrl = $('.photo').attr('src'); //图片地址
+        if (level1==""){
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("请选择一级分类！", {icon: 0});
+            });
+            return false;
+        }
+        if (level2==""){
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("请选择二级分类！", {icon: 0});
+            });
+            return false;
+        }
+
+        if (title == "") {
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("请输入商品标题！", {icon: 0})
+            });
+            return false;
+        }
+
+        if (price == "") {
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("请输入商品单价！", {icon: 0})
+            });
+            return false;
+        }
+        if (count == "") {
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("商品数量不能为空！", {icon: 0})
+            });
+            return false;
+        } else if (count <= 0) {
+            layui.use("layer", function () {
+                this.layer = layui.layer;
+                layer.msg("商品数量不能为" + count + "！", {icon: 0})
+            });
+            return false;
+        }
+        $.ajax({
+            url: '/goods/update',
+            type: 'post',
+            data: {
+                "id": id,
+                "level1": level1,
+                "level2": level2,
+                "title": title,
+                "price": price,
+                "count": count,
+                "photoUrl": photoUrl,
+                "remark":remark
+            },
+            success: function (res) {
+                layui.use("layer", function () {
+                    this.layer = layui.layer;
+                    layer.msg(res,{icon: 1});
+                    setTimeout(function () {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                    }, 1000);
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form-user-add").Validform({
+            tiptype: 2,
+            callback: function (form) {
+                form[0].submit();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.$('.btn-refresh').click();
+                parent.layer.close(index);
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhong.mapper.GoodsMapper">
+    <resultMap id="goods" type="Goods">
+        <id property="goodsId" column="goods_id"/>
+        <result property="number" column="number" />
+        <result property="firstTypeId" column="first_type_id" />
+        <result property="secondTypeId" column="second_type_id" />
+        <result property="goodsName" column="goods_name" />
+        <result property="goodsTitle" column="goods_title" />
+        <result property="photoUrl" column="photo_url" />
+        <result property="price" column="price" />
+        <result property="count" column="count" />
+        <result property="uploadDate" column="upload_date" />
+        <result property="pageView" column="page_view" />
+        <result property="evaluateCount" column="evaluate_count" />
+        <result property="userId" column="user_id" />
+        <result property="status" column="status" />
+    </resultMap>
+    <!--查询全部商品总数-->
+    <select id="selectTotalNum"  resultType="Integer">
+        SELECT COUNT(*) FROM goods WHERE stock > 0
+    </select>
+    <!--查询待审核商品数量-->
+    <select id="getCheckNum" resultType="Integer">
+        SELECT COUNT(*) FROM goods WHERE STATUS=0
+    </select>
+    <!--查询上线商品总数-->
+    <select id="getGoodsTotalNum" resultType="Integer">
+        SELECT COUNT(*) FROM goods WHERE status=1 AND stock >0
+    </select>
+    <!--查询下架商品总数-->
+    <select id="getStopGoodsNum" resultType="Integer">
+        SELECT COUNT(*) FROM goods WHERE status=3
+    </select>
+    <!--改变商品状态  待审核->上架-->
+    <update id="setCheckToOnline" parameterType="Integer">
+        UPDATE goods SET status=1 WHERE id=#{id}
+    </update>
+    <!--根据一级分类查询商品-->
+    <select id="getGoodsByLevelOne" resultMap="goods" parameterType="Integer">
+        SELECT * FROM goods WHERE STATUS=1 AND stock >0 AND first_type_id =#{id} LIMIT 5
+    </select>
+    <!--查询商品最大id-->
+    <select id="getMaxId" resultType="Integer">
+        SELECT MAX(id) FROM goods
+    </select>
+    <!--商品浏览数+1-->
+    <update id="checkPageView" parameterType="Integer">
+        UPDATE goods SET page_view=page_view+1  WHERE id=#{id}
+    </update>
+    <!--修改商品状态-->
+    <update id="updateGoodsStatus" parameterType="Integer">
+        UPDATE goods SET status=#{status} WHERE id=#{id}
+    </update>
+    <!--多条件查询-->
+    <select id="getGoodsByManyConditions" resultMap="goods" parameterType="goods">
+        SELECT * FROM goods
+        <where>
+            stock > 0
+            <if test="goodsTitle != null and goodsTitle != ''">
+                and goods_title like concat("%",#{goodsTitle},"%")
+            </if>
+            <if test="uploadDate != null and uploadDate != ''">
+                and upload_date like #{uploadDate}"%"
+            </if>
+            <if test="status != null">
+                and status=#{status}
+            </if>
+        </where>
+    </select>
+
+</mapper>

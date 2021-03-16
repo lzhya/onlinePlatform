@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhong.mapper.FirstTypeMapper">
+    <!--查询最大id-->
+    <insert id="getMaxId" >
+        SELECT MAX(id) FROM first_type
+    </insert>
+    <!--添加分类-->
+    <insert id="saveOne" parameterType="FirstType">
+        INSERT INTO first_type(NAME,remark) VALUES (#{name},#{remark})
+    </insert>
+</mapper>

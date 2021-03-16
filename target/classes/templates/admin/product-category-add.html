@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link th:href="@{/Widget/icheck/icheck.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/jquery-1.9.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <title>添加产品分类</title>
+</head>
+<body>
+<div class="type_style">
+    <div class="type_title">产品类型添加</div>
+    <div class="type_content">
+        <div class="Operate_btn" style="width: 713px;height: 300px">
+            <form action="##" method="post" class="layui-form" >
+
+                <div class="layui-form-item" style="margin-top: 20px">
+                    <label class="layui-form-label" style="width: 106px">分类名称:</label>
+                    <div class="layui-input-block" style="width: 184px;">
+                        <input type="text" class="layui-input" id="user-name" lay-verify="required" name="name" placeholder="请输入" required >
+                    </div>
+                </div>
+
+                <div class="Operate_cont clearfix">
+                </div>
+                <div class="Operate_cont clearfix">
+                    <label class="form-label">备&nbsp;&nbsp 注:</label>
+                    <div class="formControls">
+                        <textarea name="remark" rows="" class="textarea" onKeyUp="textarealength(this,100)" id="remark" style="margin-left: 20px;"></textarea>
+                        <p class="textarea-numberbar"><em class="textarea-length" style="margin-left:-147px;">0</em>/100</p>
+                    </div>
+                </div>
+                    <div class="" style=" text-align:center;margin-left: -112px">
+                        <input th:onclick="submitForm()" class="layui-btn" type="button" lay-submit lay-filter="*" value="确认添加" style="width: 100px">
+                        <input class="btn  btn-warning" type="submit" value="取消">
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    /*表单验证*/
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('submit(*)', function(data){
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+    /*提交数据*/
+    function submitForm() {
+        var name = $('#user-name').val();
+        var remark = $('#remark').val();
+        if (name!=""){
+            $.ajax({
+                url: '/firstType/add',
+                type: "POST",
+                data: {name:name,remark:remark},
+                success: function (msg) {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        if (msg=="添加成功"){
+                            layer.msg(msg,{icon:1,time:1000});
+                        }
+                        layer.msg(msg,{icon:0,time:1000});
+                    });
+                },
+            });
+        }
+
+    }
+
+</script>
+<script type="text/javascript" th:src="@{/Widget/icheck/jquery.icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/Widget/Validform/5.3.2/Validform.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/H-ui.js}"></script>
+<script type="text/javascript" th:src="@{/js/H-ui.admin.js}"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form-user-add").Validform({
+            tiptype:2,
+            callback:function(form){
+                form[0].submit();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.$('.btn-refresh').click();
+                parent.layer.close(index);
+            }
+        });
+    });
+</script>
+</body>
+</html>

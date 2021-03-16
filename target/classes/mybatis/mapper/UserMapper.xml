@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhenhong.mapper.UserMapper">
+    <!--查询所有用户-->
+    <select id="queryAll" resultType="User">
+        select * from user
+    </select>
+
+    <!--查询用户数量-->
+    <select id="queryUserCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user WHERE STATUS=1
+    </select>
+
+    <!--多条件查询-->
+    <select id="getUserByManyConditions" resultType="User" parameterType="User">
+        SELECT * FROM user
+        <where>
+            <if test="nickname != null and nickname != ''">
+                and nickname like concat("%",#{nickname},"%")
+            </if>
+            <if test="email != null and email != ''">
+                and email like concat("%",#{email},"%")
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone like concat("%",#{phone},"%")
+            </if>
+            <if test="registerDate != null and registerDate != ''">
+                and register_date  like #{registerDate}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--查询个等级用户数-->
+    <select id="getGradeCount" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*) FROM USER WHERE status =1 and integral BETWEEN #{min} AND #{max}
+    </select>
+    <!--根据用户发布商品的数量-->
+    <select id="getGoodsCountByUserId" parameterType="Integer" resultType="Integer">
+        select count(*) from goods where user_id = #{userId}
+    </select>
+</mapper>

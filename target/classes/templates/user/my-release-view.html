@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link th:href="@{/Widget/icheck/icheck.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="margin clearfix" >
+    <div class="detailed_style">
+        <!--商品信息-->
+        <div class="product_style">
+            <div class="Info_style clearfix" style="height: auto">
+                <div class="product_info clearfix" style="height: auto">
+                    <a href="#" class="img_link"><img th:src="@{${productDetailsVo.photoUrl}}"/></a>
+                    <span>
+                        <a href="#" class="name_link" th:text="${productDetailsVo.goodsTitle}"></a><br>
+                        <p>一级分类：<b th:text="${productDetailsVo.fName}"></b></p>
+                        <p>二级分类：<b th:text="${productDetailsVo.sName}"></b></p>
+                        <p th:if="${productDetailsVo.status}==1">浏览量：<b th:text="${productDetailsVo.pageView}"></b></p>
+                        <p>详情说明：<b th:text="${productDetailsVo.description}"></b></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=utf-8"/>
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/ace.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link th:href="@{/Widget/icheck/icheck.css}" rel="stylesheet" type="text/css"/>
+    <title>商品详情</title>
+
+</head>
+<body>
+<div class="margin clearfix">
+    <div class="Order_Details_style">
+        <div class="Numbering">商品编号:<b th:text="${productDetailsVo.number}"></b></div>
+    </div>
+    <div class="detailed_style">
+        <!--货主信息-->
+        <div class="Receiver_style">
+            <div class="title_name" >货主信息</div>
+            <div class="Info_style clearfix">
+                <div>
+                    <label style="display: inline;margin-left: 20px"> 姓名： </label><span>[[ ${productDetailsVo.user.nickname} ]]</span>
+                    <label style="display: inline;margin-left: 50px"> 性别： </label><span>[[ ${productDetailsVo.user.gender} ]]</span>
+                    <label style="display: inline;margin-left: 50px"> 电话： </label><span>[[ ${productDetailsVo.user.phone} ]]</span>
+                </div>
+                <div>
+                    <label style="display: inline;margin-left: 20px"> 地址： </label><span>[[ ${productDetailsVo.user.address} ]]</span>
+                </div>
+            </div>
+        </div>
+        <!--商品信息-->
+        <div class="product_style">
+            <div class="title_name">商品信息</div>
+            <div class="Info_style clearfix">
+                <div class="product_info clearfix">
+                    <a href="#" class="img_link"><img th:src="@{${productDetailsVo.photoUrl}}"/></a>
+                    <span>
+                        <a href="#" class="name_link" th:text="${productDetailsVo.goodsTitle}"></a>
+                        <p>一级分类：<b th:text="${productDetailsVo.getFName()}"></b></p>
+                        <p>二级分类：<b th:text="${productDetailsVo.getSName()}"></b></p>
+                        <p>发布数量：<b th:text="${productDetailsVo.count}"></b></p>
+                        <p>价格：<b class="price"><i>￥</i>[[ ${productDetailsVo.price} ]]</b></p>
+                        <p>状态：<i class="label label-success radius" th:text="${productDetailsVo.status==0?'待审核':'已上线'}"></i></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
