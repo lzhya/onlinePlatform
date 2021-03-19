@@ -27,14 +27,9 @@ import java.util.List;
  */
 @Controller
 public class TestController {
-    @Autowired
-    private UserMapper userMapper;
 
     @RequestMapping("/test")
-    @ResponseBody
-    public void vip(HttpServletResponse response) throws IOException {
-        List<User> userList = userMapper.selectList(null);
-        ExcelUtil.writeExcel(response,"用户表","用户名单模板.xlsx",userList);
-
+    public String test() {
+        return "user/evaluation";
     }
 }

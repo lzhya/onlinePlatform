@@ -1,0 +1,712 @@
+.ks-overlay {
+    position: absolute;
+    left: -9999px;
+    top: -9999px
+}
+
+a.tb-rate-banner-link {
+    display: block;
+    max-height: 200px;
+    overflow: hidden
+}
+
+a.tb-rate-banner-link img {
+    display: block;
+    width: 100%
+}
+
+.share-box {
+    padding-top: 9px;
+    float: right;
+    height: 26px;
+    position: relative
+}
+
+.share-box label {
+    vertical-align: middle;
+    margin-right: 5px
+}
+
+.share-box label input {
+    vertical-align: middle
+}
+
+.share-box .privacy-control {
+    padding: 2px
+}
+
+.share-selector {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 8px
+}
+
+.ks-ie8 .share-selector {
+    display: none !important
+}
+
+.share-selector .sns-setting {
+    margin-left: 5px;
+    vertical-align: middle
+}
+
+.share-selector .sns-share-app {
+    vertical-align: middle;
+    display: inline
+}
+
+.share-selector .sns-share-app label i {
+    vertical-align: text-bottom
+}
+
+.comment {
+    padding: 10px 5px;
+    color: #333
+}
+
+.comment .title {
+    font-weight: 700
+}
+
+.comment .date {
+    color: #999
+}
+
+.comment .meta {
+    margin: 5px 0
+}
+
+.comment .meta .nk {
+    margin: 0 5px 0 0;
+    font-weight: 700
+}
+
+.sellercomment {
+    color: #960
+}
+
+.ph-label {
+    margin-top: -3px;
+    position: absolute;
+    padding: 0;
+    line-height: 1.2;
+    *padding-top: 3px;
+    color: #999;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out
+}
+
+.nojs .ph-label {
+    display: none
+}
+
+.ph-hide .ph-label {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    visibility: hidden
+}
+
+.ph-focus .ph-label {
+    color: #DDD
+}
+
+.clear {
+    zoom: 1
+}
+
+.clear:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.c-value-no, .c-value-no em {
+    background: url(//img.alicdn.com/tps/i5/T1JLtRXhlAXXXXXXXX-128-83.png) -66px -12px repeat;
+    height: 12px;
+    width: 58px;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+.c-value-no {
+    margin-top: 3px;
+    margin-right: 5px
+}
+
+.c-value-no em {
+    background-position: -66px 0
+}
+
+.c-value-0 em {
+    width: 0
+}
+
+.c-value-0d1 em, .c-value-0d2 em, .c-value-0d3 em, .c-value-0d4 em, .c-value-0d5 em, .c-value-0d6 em, .c-value-0d7 em, .c-value-0d8 em, .c-value-0d9 em {
+    width: 5px
+}
+
+.c-value-1 em {
+    width: 12px
+}
+
+.c-value-1d1, .c-value-1d2 em, .c-value-1d3 em, .c-value-1d4 em, .c-value-1d5 em, .c-value-1d6 em, .c-value-1d7 em, .c-value-1d8 em, .c-value-1d9 em {
+    width: 17px
+}
+
+.c-value-2 em {
+    width: 24px
+}
+
+.c-value-2d1 em, .c-value-2d2 em, .c-value-2d3 em, .c-value-2d4 em, .c-value-2d5 em, .c-value-2d6 em, .c-value-2d7 em, .c-value-2d8 em, .c-value-2d9 em {
+    width: 29px
+}
+
+.c-value-3 em {
+    width: 36px
+}
+
+.c-value-3d1 em, .c-value-3d2 em, .c-value-3d3 em, .c-value-3d4 em, .c-value-3d5 em, .c-value-3d6 em, .c-value-3d7 em, .c-value-3d8 em, .c-value-3d9 em {
+    width: 41px
+}
+
+.c-value-4 em {
+    width: 48px
+}
+
+.c-value-4d1 em, .c-value-4d2 em, .c-value-4d3 em, em.c-value-4d4, .c-value-4d5 em, .c-value-4d6 em, .c-value-4d7 em, .c-value-4d8 em, .c-value-4d9 em {
+    width: 53px
+}
+
+.shopdetail {
+    position: relative;
+    color: #404040;
+    padding: 18px 0;
+    background: #f1f5f8 url(//img.alicdn.com/tps/i4/T1zZF.XoNzXXXXXXXX-16-258.png) repeat-x 0 -18px;
+    height: 72px;
+    border: 1px solid #C4D5DF
+}
+
+.shopdetail .tips {
+    position: absolute;
+    right: 20px;
+    width: 430px;
+    bottom: 15px
+}
+
+.shopdetail .hd {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 110px;
+    width: 39px;
+    line-height: 1.2em;
+    background-image: url(//img.alicdn.com/tps/i4/T1zZF.XoNzXXXXXXXX-16-258.png);
+    background-repeat: no-repeat;
+    background-position: 24px -159px
+}
+
+.shopdetail .hd h3 {
+    width: 1em;
+    padding-top: 25px;
+    margin-left: 10px;
+    color: #666;
+    font-weight: 400
+}
+
+.shopdetail .bd {
+    padding-left: 100px;
+    margin-left: 39px
+}
+
+.shopdetail .bd .shop-logo {
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-left: -80px
+}
+
+.itemlist input {
+    vertical-align: text-bottom;
+    margin-right: 5px
+}
+
+.listhd {
+    position: relative
+}
+
+.listhd h3 {
+    background: #f2f7fa url(//img.alicdn.com/tps/i4/T1zZF.XoNzXXXXXXXX-16-258.png) repeat-x 0 -134px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 15px;
+    padding-left: 12px;
+    border-bottom: 1px solid #C4D5DF
+}
+
+.listhd .act {
+    right: 5px;
+    top: 3px;
+    position: absolute
+}
+
+.listhd .act label {
+    vertical-align: middle
+}
+
+.listhd .act input {
+    margin-right: 3px;
+    vertical-align: middle
+}
+
+.rate-level-normal .textinput {
+    border: 1px solid red
+}
+
+.rate-msg-box {
+    display: none;
+    width: 452px
+}
+
+.rate-msg-box .textinput {
+    padding: 8px;
+    border: 1px solid #ABADB3
+}
+
+.rate-msg-box .ks-placeholder {
+    position: absolute
+}
+
+.rate-msg-box .text-counter strong {
+    color: #F60;
+    margin: 0 5px
+}
+
+.rate-msg-box .rate-msg-option {
+    float: right
+}
+
+.rate-msg-box .rate-msg-option li {
+    float: left;
+    margin-right: 5px
+}
+
+.rate-msg-box .ph-label {
+    width: 400px;
+    line-height: 1.5;
+    display: block
+}
+
+.rate-msg-box .rate-msg {
+    width: 100%;
+    _width: 434px;
+    height: 132px;
+    border: 0;
+    outline: 0;
+    resize: none
+}
+
+.rate-msg-box .ft {
+    position: relative;
+    padding: 2px
+}
+
+.rate-msg-box .close-msg-box {
+    cursor: pointer;
+    display: inline-block;
+    width: 70px;
+    height: 18px;
+    text-indent: -9999px;
+    border: none;
+    background: url(//assets.alicdn.com/app/rc/img/icon.png) no-repeat 0 -243px
+}
+
+.rate-msg-box .close-msg-box:hover {
+    background-position: 0 -214px
+}
+
+.rate-msg-box .add-comment {
+    background: url(//assets.alicdn.com/app/rc/img/icon.png) no-repeat 0 -71px
+}
+
+.rate-msg-box .msg {
+    margin: 10px 0
+}
+
+.rating-box .bd {
+    position: relative
+}
+
+.labels {
+    background: #F3F8FE;
+    padding: 5px 20px;
+    zoom: 1
+}
+
+.labels li {
+    float: left;
+    height: 20px;
+    line-height: 20px
+}
+
+.labels .itemdetail {
+    width: 448px
+}
+
+.labels .radiolabel {
+    width: 75px
+}
+
+.labels:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.starstip {
+    position: absolute;
+    top: 25px;
+    left: 340px;
+    background: url(//assets.alicdn.com/app/rc/img/icon_v2.gif) no-repeat 0 -10px;
+    width: 301px;
+    height: 51px;
+    font-size: 12px;
+}
+
+.starstip p {
+    padding: 6px 125px 10px 14px
+}
+
+.rate-list {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    clear: both
+}
+
+.listbd label {
+    vertical-align: middle
+}
+
+.listbd input {
+    vertical-align: middle
+}
+
+.listbd .msg {
+    margin: 10px 0
+}
+
+.item-rate-info {
+    position: relative;
+    float: left;
+    width: 448px
+}
+
+.item-detail {
+    padding: 10px 0 10px 80px;
+    position: relative;
+    width: 280px;
+    overflow: hidden;
+    zoom: 1
+}
+
+.item-detail h3 {
+    font-size: 12px;
+    width: 250px;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 10px
+}
+
+.item-detail .item-d-img {
+    float: left;
+    margin-left: -80px;
+    width: 60px
+}
+
+.item-detail p {
+    color: #999
+}
+
+.rate-box {
+    *zoom: 1;
+    background: url(//img.alicdn.com/tps/i1/T1AVl.XoRDXXXXXXXX-11-1.gif) 50% 100% repeat-x
+}
+
+.rate-box:before, .rate-box:after {
+    content: " ";
+    display: table
+}
+
+.rate-box:after {
+    clear: both
+}
+
+.rate-box .item-rate-score {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-height: 1px;
+    width: 88px
+}
+
+.rate-box .item-rate-score .good {
+    background-position: -43px -88px;
+    background-color: #FF6D02
+}
+
+.rate-box .item-rate-score .normal {
+    background-position: -43px -139px;
+    background-color: #F0CA01
+}
+
+.rate-box .item-rate-score .bad {
+    background-position: -43px -113px;
+    background-color: #999
+}
+
+.rate-box .rate-score {
+    background: url(//assets.alicdn.com/app/rc/img/icon_v2.gif) no-repeat 1000px 1000px;
+    width: 34px;
+    height: 14px;
+    color: #FFF;
+    line-height: 14px;
+    font-size: 10px;
+    display: block;
+    margin: 10px 5px 0 10px;
+    text-align: center;
+    text-indent: -9999px;
+    font-weight: 700
+}
+
+.rate-box .dsr-score {
+    display: block;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 20px
+}
+
+.rate-box .dsr-score em {
+    color: #F60;
+    font-weight: 700;
+    font-size: 14px
+}
+
+.rate-box .item-rate-main {
+    float: left;
+    width: 458px
+}
+
+.rate-box .item-rate-main .item-rate-act {
+    margin: 10px 0;
+    *zoom: 1
+}
+
+.rate-box .item-rate-main .item-rate-act:before, .rate-box .item-rate-main .item-rate-act:after {
+    content: " ";
+    display: table
+}
+
+.rate-box .item-rate-main .item-rate-act:after {
+    clear: both
+}
+
+.rate-box .item-rate-main .rate-msg-handle {
+    float: right
+}
+
+.rate-box .item-rate-main .rate-control-stars {
+    float: left
+}
+
+.rate-box .item-rate-main .rate-control-stars .ks-ss-tips {
+    display: none
+}
+
+.rate-box .item-rate-main .rate-control li {
+    float: left;
+    margin-right: 1em
+}
+
+.rate-box .share-box label {
+    color: #F60
+}
+
+.stars {
+    padding: 20px
+}
+
+.stars li {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.stars li label {
+    line-height: 23px
+}
+
+.form-msg {
+    margin: 20px 0 0 390px
+}
+
+.submitbox {
+    padding-left: 390px;
+    margin: 10px 0
+}
+
+.submitbox button {
+    margin-right: 5px
+}
+
+.ks-simplestar {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid transparent
+}
+
+* html .ks-simplestar {
+    border-color: pink;
+    filter: chroma(color=#ffc0cb)
+}
+
+.ks-simplestar img {
+    margin-right: 5px
+}
+
+.ks-ss-tips {
+    margin-left: 10px
+}
+
+.ks-ss-tips strong {
+    color: #F60;
+    font-weight: 700
+}
+
+.ks-ss-focus {
+    border: 1px solid #DDD
+}
+
+* html .ks-ss-focus {
+    border: 1px solid #DDD
+}
+
+.nojs .starstip {
+    left: 360px
+}
+
+.nojs .rate-msg-box {
+    display: block
+}
+
+.nojs #rate-good-all, .nojs .listhd .act, .nojs .text-counter {
+    display: none
+}
+
+.gift-tip {
+    display: none;
+    background: url(//img.alicdn.com/tps/i1/T1U3GKXjXoXXXXXXXX-410-80.png) 0 0 no-repeat;
+    width: 410px;
+    height: 53px
+}
+
+.gift-tip .wrap {
+    padding: 23px 0 0 34px
+}
+
+.gift-tip em {
+    font-weight: 700;
+    color: #F60
+}
+
+.ks-overlay-hidden {
+    visibility: hidden
+}
+
+.ks-overlay-mask-hidden {
+    display: none
+}
+
+.ks-overlay-shown {
+    visibility: visible
+}
+
+.ks-overlay-mask-shown {
+    display: block
+}
+
+.ks-dialog, .ks-overlay {
+    position: absolute;
+    left: -9999px;
+    top: -9999px
+}
+
+.ks-dialog, .ks-popup {
+    background-color: #FBFBFB;
+    border: 1px solid #ACB4BE
+}
+
+.ks-dialog .ks-stdmod-header {
+    background: #D6DBE2;
+    border-bottom: 1px solid #ACB4BE;
+    font-size: 14px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 18px
+}
+
+.ks-ext-close {
+    height: 18px;
+    width: 18px;
+    border: 1px solid transparent;
+    right: 6px;
+    top: 6px;
+    vertical-align: middle;
+    position: absolute;
+    text-decoration: none;
+    outline: 0;
+    _border-color: tomato;
+    _filter: chroma(color=#ff6347);
+    overflow: hidden;
+    cursor: pointer
+}
+
+.ks-ext-close .ks-ext-close-x {
+    display: block;
+    background: url(//img.alicdn.com/tps/i4/T1sHGmXb8FXXXXXXXX-13-13.png) no-repeat;
+    height: 13px;
+    text-indent: -9999px;
+    width: 13px;
+    margin: 2.5px
+}
+
+.ks-ext-close:hover {
+    border: 1px solid #CED5E0;
+    background: #FFF
+}
+
+.ks-ext-mask {
+    background-color: #000;
+    opacity: .3;
+    filter: alpha(opacity=30)
+}
+
+.ks-ext-loading {
+    opacity: .3;
+    filter: alpha(opacity=30);
+    background: #000
+}
+
+.ke-global-loading .ks-ext-loading {
+    background-attachment: fixed
+}
+
+.privacy-control {
+    padding: 2px
+}

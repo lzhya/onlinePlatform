@@ -55,6 +55,8 @@ public class UserController {
     private CartMapper cartMapper;
     @Autowired
     private PictureMapper pictureMapper;
+    @Autowired
+    private EvaluationMapper evaluationMapper;
     /**
      * 跳转到后台首页
      */
@@ -341,6 +343,16 @@ public class UserController {
         User user=  (User) session.getAttribute("user");
         //根据用户id查询该用户所发布的商品信息
         List<OrderDetailsVo> orderDetailsVoList = orderService.orderDetailsVoList(user.getId(), 1);
+        for (OrderDetailsVo orderDetailsVo : orderDetailsVoList) {
+            QueryWrapper<Evaluate> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("order_id",orderDetailsVo.getId());
+            Evaluate evaluate = evaluationMapper.selectOne(queryWrapper);
+            if (evaluate==null){
+                orderDetailsVo.setIsEvaluate(false);
+            }else{
+                orderDetailsVo.setIsEvaluate(true);
+            }
+        }
         model.addAttribute("orderDetailsVoList",orderDetailsVoList);
         return "user/toBeReceived";
     }

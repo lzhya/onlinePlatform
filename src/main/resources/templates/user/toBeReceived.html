@@ -116,13 +116,13 @@
             </dd>
         </dl><!--helpNav/-->
     </div>
-    <div class="contRight" style="width: 867px;float: left;margin-left: 10px;border: none">
+    <div class="contRight" style="width: 867px;float: left;margin-left: 10px;border: none;">
         <!--如果订单为空-->
         <div th:if="${#lists.isEmpty(orderDetailsVoList)}" style="padding: 67px 124px">
             <img th:src="@{/images/front/notfount.jpg}" style="height: 180px;width: 185px">
             <span style="font-size: 14px">没有符合条件的宝贝，请尝试其他搜索条件。</span>
         </div>
-        <div class="orderInfo" th:each="orderDetailsVo: ${orderDetailsVoList}">
+        <div class="orderInfo" th:each="orderDetailsVo: ${orderDetailsVoList}" >
             <div style="margin: 0px 0px -15px 8px;">
                 <svg t="1611323548456" class="icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="3459" width="16" height="16">
@@ -204,6 +204,7 @@
                 </div>
                 <div>
                     <button style="background-color: white;color: #0C0C0C;border: 1px solid gainsboro;" th:onclick="|detail(${orderDetailsVo.id},${orderDetailsVo.status})|">查看详情</button>
+                    <button style="background-color: white;color: #0C0C0C;border: 1px solid #ff4401;" th:if="${orderDetailsVo.isEvaluate==false}" th:onclick="|toEvaluate(${orderDetailsVo.id})|">去评价</button>
                 </div>
             </div>
         </div>
@@ -217,6 +218,9 @@
 <div th:replace="~{user/common/common::inHelp}"></div>
 <!--底部结束-->
 <script>
+    function toEvaluate(id) {
+        window.location.href='/user/evaluate?id='+id;
+    }
    /*查看订单详情*/
     function detail(id,status) {
         layui.use('layer', function(){
@@ -253,6 +257,7 @@
             });
         });
     }
+    /*去评价*/
 </script>
 </body>
 </html>

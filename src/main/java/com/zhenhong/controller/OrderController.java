@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zhenhong.mapper.GoodsMapper;
-import com.zhenhong.mapper.IntegralMapper;
-import com.zhenhong.mapper.OrderMapper;
-import com.zhenhong.mapper.UserMapper;
+import com.zhenhong.mapper.*;
 import com.zhenhong.pojo.*;
 import com.zhenhong.service.CartService;
 import com.zhenhong.service.OrderService;
@@ -48,6 +45,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private IntegralMapper integralMapper;
+    @Autowired
+    private EvaluationMapper evaluationMapper;
 
     /**
      * 查询全部订单
@@ -383,5 +382,12 @@ public class OrderController {
         }else {
             return "收货失败";
         }
+    }
+
+    @RequestMapping("/user/evaluate")
+    public String evaluate(Integer id,Model model){
+        OrderDetailsVo orderDetailsVo = orderService.orderDetailsVo(id);
+        model.addAttribute("orderDetailsVo",orderDetailsVo);
+        return "user/evaluation";
     }
 }

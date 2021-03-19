@@ -34,6 +34,7 @@ public class OrderDetailsVo {
     private String remark;
     private String createTime;
     private String updateTime;
+    private Boolean isEvaluate;
 
     public OrderDetailsVo(Integer id, String orderCode, Integer customerId, Integer sellerId, Integer goodsId, Integer orderCount, Integer delivery, Integer status, String remark, String createTime, String updateTime) {
         this.id = id;

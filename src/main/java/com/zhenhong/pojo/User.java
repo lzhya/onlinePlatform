@@ -89,6 +89,7 @@ public class User {
    */
   @ExcelIgnore
   private Integer identity;
+
   /**
    * 用户状态
    */
